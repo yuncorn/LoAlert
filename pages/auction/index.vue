@@ -44,4 +44,11 @@ h2 {
   color: black;
   padding: 8px;
 }
+h3 {
+  font-size: 14px;
+  line-height: 1.38;
+  color: black;
+  padding: 8px;
+  text-align: center;
+}
 </style>

@@ -1,92 +1,87 @@
 <template>
   <div class="SearchForm">
-    <form id="SearchForm">
+    <div>
       <div>
-        <div>
-          <span>
-            품질
-            <select
-              v-model="ResultJsonData.ItemGradeQuality"
-              name="ItemGradeQuality"
+        <span>
+          품질
+          <select
+            id="ItemGradeQuality"
+            v-model="ResultJsonData.ItemGradeQuality"
+          >
+            <option
+              v-for="(item, index) in ItemGradeQualities"
+              :key="index"
+              :value="item"
             >
-              <option
-                v-for="(item, index) in ItemGradeQualities"
-                :key="index"
-                :value="item"
-              >
-                {{ item }}
-              </option>
-            </select>
-          </span>
-          <span>
-            등급
-            <select v-model="ResultJsonData.ItemGrade" name="ItemGrade">
-              <option
-                v-for="(item, index) in ItemGrades"
-                :key="index"
-                :value="item"
-              >
-                {{ item }}
-              </option>
-            </select>
-          </span>
-        </div>
-        <div>
-          <span>
-            티어
-            <select v-model="ResultJsonData.ItemTier" name="ItemTier">
-              <option
-                v-for="(item, index) in ItemTiers"
-                :key="index"
-                :value="item"
-              >
-                {{ item }}
-              </option>
-            </select>
-          </span>
-          <span>
-            직업
-            <select
-              id="CharacterClass"
-              v-model="ResultJsonData.CharacterClass"
-              name="CharacterClass"
-              @change="clickCharacterClass()"
+              {{ item }}
+            </option>
+          </select>
+        </span>
+        <span>
+          등급
+          <select v-model="ResultJsonData.ItemGrade">
+            <option
+              v-for="(item, index) in ItemGrades"
+              :key="index"
+              :value="item"
             >
-              <option value="">전체</option>
-              <option
-                v-for="(item, index) in Classes"
-                :key="index"
-                :value="item"
-              >
-                {{ item }}
-              </option>
-            </select>
-          </span>
-        </div>
-        <div>
-          <span>
-            분류
-            <select v-model="ResultJsonData.CategoryCode" name="CategoryCode">
-              <option
-                v-for="(item, index) in Categories"
-                :key="index"
-                :value="item.Code"
-              >
-                {{ item.CodeName }}
-              </option>
-            </select>
-          </span>
-        </div>
+              {{ item }}
+            </option>
+          </select>
+        </span>
       </div>
-    </form>
+      <div>
+        <span>
+          티어
+          <select v-model="ResultJsonData.ItemTier">
+            <option
+              v-for="(item, index) in ItemTiers"
+              :key="index"
+              :value="item"
+            >
+              {{ item }}
+            </option>
+          </select>
+        </span>
+        <span>
+          직업
+          <select
+            id="CharacterClass"
+            v-model="ResultJsonData.CharacterClass"
+            @change="clickCharacterClass()"
+          >
+            <option value="">전체</option>
+            <option v-for="(item, index) in Classes" :key="index" :value="item">
+              {{ item }}
+            </option>
+          </select>
+        </span>
+      </div>
+      <div>
+        <span>
+          분류
+          <select
+            v-model="ResultJsonData.CategoryCode"
+            @change="clickCategoryCode($event.target.value)"
+          >
+            <option
+              v-for="(item, index) in Categories"
+              :key="index"
+              :value="item.Code"
+            >
+              {{ item.CodeName }}
+            </option>
+          </select>
+        </span>
+      </div>
+    </div>
     <div>
       <h2>기타 상세옵션</h2>
-      <form class="SearchForm_Etc">
+      <div>
         <p>
           <select
             id="FirstOption1"
             v-model="EtcOption1.FirstOption"
-            name="FirstOption"
             class="FirstOption"
             @change="clickFirstOption($event.target.id, $event.target.value)"
           >
@@ -99,31 +94,24 @@
               {{ item.Text }}
             </option>
           </select>
-          <select
-            id="SecondOption1"
-            v-model="EtcOption1.SecondOption"
-            name="SecondOption"
-          ></select>
+          <select id="SecondOption1" v-model="EtcOption1.SecondOption"></select>
           <input
             v-model="EtcOption1.MinValue"
             type="text"
-            name="MinValue"
             placeholder="최소 수치"
           />
           <input
             v-model="EtcOption1.MaxValue"
             type="text"
-            name="MaxValue"
             placeholder="최대 수치"
           />
         </p>
-      </form>
-      <form class="SearchForm_Etc">
+      </div>
+      <div>
         <p>
           <select
             id="FirstOption2"
             v-model="EtcOption2.FirstOption"
-            name="FirstOption"
             class="FirstOption"
             @change="clickFirstOption($event.target.id, $event.target.value)"
           >
@@ -136,31 +124,24 @@
               {{ item.Text }}
             </option>
           </select>
-          <select
-            id="SecondOption2"
-            v-model="EtcOption2.SecondOption"
-            name="SecondOption"
-          ></select>
+          <select id="SecondOption2" v-model="EtcOption2.SecondOption"></select>
           <input
             v-model="EtcOption2.MinValue"
             type="text"
-            name="MinValue"
             placeholder="최소 수치"
           />
           <input
             v-model="EtcOption2.MaxValue"
             type="text"
-            name="MaxValue"
             placeholder="최대 수치"
           />
         </p>
-      </form>
-      <form class="SearchForm_Etc">
+      </div>
+      <div>
         <p>
           <select
             id="FirstOption3"
             v-model="EtcOption3.FirstOption"
-            name="FirstOption"
             class="FirstOption"
             @change="clickFirstOption($event.target.id, $event.target.value)"
           >
@@ -173,31 +154,24 @@
               {{ item.Text }}
             </option>
           </select>
-          <select
-            id="SecondOption3"
-            v-model="EtcOption3.SecondOption"
-            name="SecondOption"
-          ></select>
+          <select id="SecondOption3" v-model="EtcOption3.SecondOption"></select>
           <input
             v-model="EtcOption3.MinValue"
             type="text"
-            name="MinValue"
             placeholder="최소 수치"
           />
           <input
             v-model="EtcOption3.MaxValue"
             type="text"
-            name="MaxValue"
             placeholder="최대 수치"
           />
         </p>
-      </form>
-      <form class="SearchForm_Etc">
+      </div>
+      <div>
         <p>
           <select
             id="FirstOption4"
             v-model="EtcOption4.FirstOption"
-            name="FirstOption"
             class="FirstOption"
             @change="clickFirstOption($event.target.id, $event.target.value)"
           >
@@ -210,31 +184,24 @@
               {{ item.Text }}
             </option>
           </select>
-          <select
-            id="SecondOption4"
-            v-model="EtcOption4.SecondOption"
-            name="SecondOption"
-          ></select>
+          <select id="SecondOption4" v-model="EtcOption4.SecondOption"></select>
           <input
             v-model="EtcOption4.MinValue"
             type="text"
-            name="MinValue"
             placeholder="최소 수치"
           />
           <input
             v-model="EtcOption4.MaxValue"
             type="text"
-            name="MaxValue"
             placeholder="최대 수치"
           />
         </p>
-      </form>
-      <form class="SearchForm_Etc">
+      </div>
+      <div>
         <p>
           <select
             id="FirstOption5"
             v-model="EtcOption5.FirstOption"
-            name="FirstOption"
             class="FirstOption"
             @change="clickFirstOption($event.target.id, $event.target.value)"
           >
@@ -247,25 +214,19 @@
               {{ item.Text }}
             </option>
           </select>
-          <select
-            id="SecondOption5"
-            v-model="EtcOption5.SecondOption"
-            name="SecondOption"
-          ></select>
+          <select id="SecondOption5" v-model="EtcOption5.SecondOption"></select>
           <input
             v-model="EtcOption5.MinValue"
             type="text"
-            name="MinValue"
             placeholder="최소 수치"
           />
           <input
             v-model="EtcOption5.MaxValue"
             type="text"
-            name="MaxValue"
             placeholder="최대 수치"
           />
         </p>
-      </form>
+      </div>
     </div>
   </div>
 </template>
@@ -1114,7 +1075,7 @@ export default {
           arrayObj = this.SecondOptions_Bracelet_Option;
           break;
         default:
-          break;
+          return;
       }
 
       $('#' + targetId).append('<option value="0"></option>');
@@ -1125,8 +1086,24 @@ export default {
         );
       });
     },
+    clickCategoryCode(value) {
+      if (value === '200040') {
+        $('#ItemGradeQuality').attr('disabled', true);
+        $('#CharacterClass').attr('disabled', true);
+
+        Array.from($('.FirstOption')).forEach(i => {
+          if (i.value === '3' || i.value === '6') {
+            this.clickFirstOption(i.id, 0);
+          }
+        });
+      } else {
+        $('#ItemGradeQuality').removeAttr('disabled');
+        $('#CharacterClass').removeAttr('disabled');
+      }
+    },
     getApiJsonParams(isInit) {
       this.ResultJsonData.EtcOptions = [];
+
       if (this.EtcOption1.FirstOption !== 0)
         this.ResultJsonData.EtcOptions.push(this.EtcOption1);
       if (this.EtcOption2.FirstOption !== 0)
@@ -1150,7 +1127,14 @@ export default {
         JSON.stringify(this.ResultJsonData),
       );
 
-      return JSON.stringify(this.ResultJsonData);
+      if (this.ResultJsonData.CategoryCode === 200040) {
+        const tempResultJsonData = Object.assign({}, this.ResultJsonData);
+        tempResultJsonData.ItemGradeQuality = null;
+        tempResultJsonData.CharacterClass = null;
+        return JSON.stringify(tempResultJsonData);
+      } else {
+        return JSON.stringify(this.ResultJsonData);
+      }
     },
     clickCharacterClass() {
       Array.from($('.FirstOption')).forEach(i => {

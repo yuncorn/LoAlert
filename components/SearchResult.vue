@@ -18,7 +18,12 @@
             즉시구매가 <span></span>
           </th>
         </tr>
-        <tr v-for="(item, index) in SearchResult" :key="index">
+        <tr v-if="isEmptyResult">
+          <td colspan="8">
+            <h3>검색 결과가 없습니다.</h3>
+          </td>
+        </tr>
+        <tr v-for="(item, index) in SearchResult" v-else :key="index">
           <td style="width: 80px">
             <img :src="item.Icon" alt="" />
           </td>
@@ -102,6 +107,7 @@ export default {
       },
       SearchResult: {},
       SearchOptions: {},
+      isEmptyResult: false,
     };
   },
   methods: {
@@ -137,21 +143,29 @@ export default {
     },
     setSearchResult(items) {
       this.SearchResult = items.Items;
-      this.page.total = items.TotalCount;
-      this.page.page = items.PageNo;
-      this.page.count = Object.keys(items.Items).length;
 
-      Array.from(document.getElementById('tableHeader').children).forEach(
-        (e, index) => {
-          if (index > 0) {
-            e.classList.remove('active');
-          }
-        },
-      );
+      if (this.SearchResult === null) {
+        this.isEmptyResult = true;
+      } else {
+        this.isEmptyResult = false;
+        this.page.total = items.TotalCount;
+        this.page.page = items.PageNo;
+        this.page.count = Object.keys(items.Items).length;
 
-      this.SearchOptions = JSON.parse(sessionStorage.getItem('searchOptions'));
-      const targetElem = document.getElementById(this.SearchOptions.Sort);
-      targetElem.classList.add('active');
+        Array.from(document.getElementById('tableHeader').children).forEach(
+          (e, index) => {
+            if (index > 0) {
+              e.classList.remove('active');
+            }
+          },
+        );
+
+        this.SearchOptions = JSON.parse(
+          sessionStorage.getItem('searchOptions'),
+        );
+        const targetElem = document.getElementById(this.SearchOptions.Sort);
+        targetElem.classList.add('active');
+      }
     },
     getRemainTime(time) {
       const xmasDay = new Date(time);
