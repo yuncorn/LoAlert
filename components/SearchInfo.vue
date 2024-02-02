@@ -1013,14 +1013,15 @@ export default {
         this.ResultJsonData.SortCondition = SearchOptions.SortCondition;
       }
 
-      sessionStorage.setItem('searchOptions', JSON.stringify(this.ResultJsonData));
-
       if (this.ResultJsonData.CategoryCode === 200040) {
         const tempResultJsonData = Object.assign({}, this.ResultJsonData);
         tempResultJsonData.ItemGradeQuality = null;
         tempResultJsonData.CharacterClass = null;
+
+        sessionStorage.setItem('searchOptions', JSON.stringify(tempResultJsonData));
         return JSON.stringify(tempResultJsonData);
       } else {
+        sessionStorage.setItem('searchOptions', JSON.stringify(this.ResultJsonData));
         return JSON.stringify(this.ResultJsonData);
       }
     },
