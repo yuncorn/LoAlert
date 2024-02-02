@@ -39,18 +39,12 @@ export default {
   computed: {
     // 현재 화면의 시작 페이징 번호
     startPage: function () {
-      const value =
-        Math.floor((this.page.page - 1) / this.defaultPages) *
-          this.defaultPages +
-        1;
+      const value = Math.floor((this.page.page - 1) / this.defaultPages) * this.defaultPages + 1;
       return value;
     },
     // 전체 페이징 리스트
     totalPage: function () {
-      return (
-        Math.floor(this.page.total / this.page.count) +
-        (this.page.total % this.page.count === 0 ? 0 : 1)
-      );
+      return Math.floor(this.page.total / this.page.count) + (this.page.total % this.page.count === 0 ? 0 : 1);
     },
     // 현재 화면의 페이징 리스트 개수
     countInPages: function () {

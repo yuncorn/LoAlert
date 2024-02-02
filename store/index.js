@@ -1,7 +1,5 @@
 import { fetchNewsEvents, fetchAuctionsItems } from '~/api';
 
-export const FETCH_CART_ITEMS = 'FETCH_CART_ITEMS';
-
 export const state = () => ({
   newsItems: [],
   auctionItems: [],

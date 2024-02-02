@@ -4,15 +4,8 @@
       <div>
         <span>
           품질
-          <select
-            id="ItemGradeQuality"
-            v-model="ResultJsonData.ItemGradeQuality"
-          >
-            <option
-              v-for="(item, index) in ItemGradeQualities"
-              :key="index"
-              :value="item"
-            >
+          <select id="ItemGradeQuality" v-model="ResultJsonData.ItemGradeQuality">
+            <option v-for="(item, index) in ItemGradeQualities" :key="index" :value="item">
               {{ item }}
             </option>
           </select>
@@ -20,11 +13,7 @@
         <span>
           등급
           <select v-model="ResultJsonData.ItemGrade">
-            <option
-              v-for="(item, index) in ItemGrades"
-              :key="index"
-              :value="item"
-            >
+            <option v-for="(item, index) in ItemGrades" :key="index" :value="item">
               {{ item }}
             </option>
           </select>
@@ -34,22 +23,14 @@
         <span>
           티어
           <select v-model="ResultJsonData.ItemTier">
-            <option
-              v-for="(item, index) in ItemTiers"
-              :key="index"
-              :value="item"
-            >
+            <option v-for="(item, index) in ItemTiers" :key="index" :value="item">
               {{ item }}
             </option>
           </select>
         </span>
         <span>
           직업
-          <select
-            id="CharacterClass"
-            v-model="ResultJsonData.CharacterClass"
-            @change="clickCharacterClass()"
-          >
+          <select id="CharacterClass" v-model="ResultJsonData.CharacterClass" @change="clickCharacterClass()">
             <option value="">전체</option>
             <option v-for="(item, index) in Classes" :key="index" :value="item">
               {{ item }}
@@ -60,15 +41,8 @@
       <div>
         <span>
           분류
-          <select
-            v-model="ResultJsonData.CategoryCode"
-            @change="clickCategoryCode($event.target.value)"
-          >
-            <option
-              v-for="(item, index) in Categories"
-              :key="index"
-              :value="item.Code"
-            >
+          <select v-model="ResultJsonData.CategoryCode" @change="clickCategoryCode($event.target.value)">
+            <option v-for="(item, index) in Categories" :key="index" :value="item.Code">
               {{ item.CodeName }}
             </option>
           </select>
@@ -85,26 +59,13 @@
             class="FirstOption"
             @change="clickFirstOption($event.target.id, $event.target.value)"
           >
-            <option
-              v-for="(item, index) in FirstOptions"
-              :key="index"
-              class="FirstOption1"
-              :value="item.Value"
-            >
+            <option v-for="(item, index) in FirstOptions" :key="index" class="FirstOption1" :value="item.Value">
               {{ item.Text }}
             </option>
           </select>
           <select id="SecondOption1" v-model="EtcOption1.SecondOption"></select>
-          <input
-            v-model="EtcOption1.MinValue"
-            type="text"
-            placeholder="최소 수치"
-          />
-          <input
-            v-model="EtcOption1.MaxValue"
-            type="text"
-            placeholder="최대 수치"
-          />
+          <input v-model="EtcOption1.MinValue" type="text" placeholder="최소 수치" />
+          <input v-model="EtcOption1.MaxValue" type="text" placeholder="최대 수치" />
         </p>
       </div>
       <div>
@@ -115,26 +76,13 @@
             class="FirstOption"
             @change="clickFirstOption($event.target.id, $event.target.value)"
           >
-            <option
-              v-for="(item, index) in FirstOptions"
-              :key="index"
-              class="FirstOption2"
-              :value="item.Value"
-            >
+            <option v-for="(item, index) in FirstOptions" :key="index" class="FirstOption2" :value="item.Value">
               {{ item.Text }}
             </option>
           </select>
           <select id="SecondOption2" v-model="EtcOption2.SecondOption"></select>
-          <input
-            v-model="EtcOption2.MinValue"
-            type="text"
-            placeholder="최소 수치"
-          />
-          <input
-            v-model="EtcOption2.MaxValue"
-            type="text"
-            placeholder="최대 수치"
-          />
+          <input v-model="EtcOption2.MinValue" type="text" placeholder="최소 수치" />
+          <input v-model="EtcOption2.MaxValue" type="text" placeholder="최대 수치" />
         </p>
       </div>
       <div>
@@ -145,26 +93,13 @@
             class="FirstOption"
             @change="clickFirstOption($event.target.id, $event.target.value)"
           >
-            <option
-              v-for="(item, index) in FirstOptions"
-              :key="index"
-              class="FirstOption3"
-              :value="item.Value"
-            >
+            <option v-for="(item, index) in FirstOptions" :key="index" class="FirstOption3" :value="item.Value">
               {{ item.Text }}
             </option>
           </select>
           <select id="SecondOption3" v-model="EtcOption3.SecondOption"></select>
-          <input
-            v-model="EtcOption3.MinValue"
-            type="text"
-            placeholder="최소 수치"
-          />
-          <input
-            v-model="EtcOption3.MaxValue"
-            type="text"
-            placeholder="최대 수치"
-          />
+          <input v-model="EtcOption3.MinValue" type="text" placeholder="최소 수치" />
+          <input v-model="EtcOption3.MaxValue" type="text" placeholder="최대 수치" />
         </p>
       </div>
       <div>
@@ -175,26 +110,13 @@
             class="FirstOption"
             @change="clickFirstOption($event.target.id, $event.target.value)"
           >
-            <option
-              v-for="(item, index) in FirstOptions"
-              :key="index"
-              class="FirstOption4"
-              :value="item.Value"
-            >
+            <option v-for="(item, index) in FirstOptions" :key="index" class="FirstOption4" :value="item.Value">
               {{ item.Text }}
             </option>
           </select>
           <select id="SecondOption4" v-model="EtcOption4.SecondOption"></select>
-          <input
-            v-model="EtcOption4.MinValue"
-            type="text"
-            placeholder="최소 수치"
-          />
-          <input
-            v-model="EtcOption4.MaxValue"
-            type="text"
-            placeholder="최대 수치"
-          />
+          <input v-model="EtcOption4.MinValue" type="text" placeholder="최소 수치" />
+          <input v-model="EtcOption4.MaxValue" type="text" placeholder="최대 수치" />
         </p>
       </div>
       <div>
@@ -205,26 +127,13 @@
             class="FirstOption"
             @change="clickFirstOption($event.target.id, $event.target.value)"
           >
-            <option
-              v-for="(item, index) in FirstOptions"
-              :key="index"
-              class="FirstOption5"
-              :value="item.Value"
-            >
+            <option v-for="(item, index) in FirstOptions" :key="index" class="FirstOption5" :value="item.Value">
               {{ item.Text }}
             </option>
           </select>
           <select id="SecondOption5" v-model="EtcOption5.SecondOption"></select>
-          <input
-            v-model="EtcOption5.MinValue"
-            type="text"
-            placeholder="최소 수치"
-          />
-          <input
-            v-model="EtcOption5.MaxValue"
-            type="text"
-            placeholder="최대 수치"
-          />
+          <input v-model="EtcOption5.MinValue" type="text" placeholder="최소 수치" />
+          <input v-model="EtcOption5.MaxValue" type="text" placeholder="최대 수치" />
         </p>
       </div>
     </div>
@@ -938,16 +847,7 @@ export default {
           CodeName: '팔찌',
         },
       ],
-      ItemGrades: [
-        '일반',
-        '고급',
-        '희귀',
-        '영웅',
-        '전설',
-        '유물',
-        '고대',
-        '에스더',
-      ],
+      ItemGrades: ['일반', '고급', '희귀', '영웅', '전설', '유물', '고대', '에스더'],
       ItemTiers: [1, 2, 3],
       Classes: [
         '버서커',
@@ -1034,9 +934,7 @@ export default {
           break;
         case '3':
           if ($('#CharacterClass option:selected').val() === '전체') {
-            arrayObj = this.SecondOptions_Engrave_Common.concat(
-              this.SecondOptions_Engrave_Class,
-            );
+            arrayObj = this.SecondOptions_Engrave_Common.concat(this.SecondOptions_Engrave_Class);
           } else {
             arrayObj = this.SecondOptions_Engrave_Common;
           }
@@ -1081,9 +979,7 @@ export default {
       $('#' + targetId).append('<option value="0"></option>');
 
       Array.from(arrayObj).forEach(i => {
-        $('#' + targetId).append(
-          '<option value="' + i.Value + '">' + i.Text + '</option>',
-        );
+        $('#' + targetId).append('<option value="' + i.Value + '">' + i.Text + '</option>');
       });
     },
     clickCategoryCode(value) {
@@ -1104,16 +1000,11 @@ export default {
     getApiJsonParams(isInit) {
       this.ResultJsonData.EtcOptions = [];
 
-      if (this.EtcOption1.FirstOption !== 0)
-        this.ResultJsonData.EtcOptions.push(this.EtcOption1);
-      if (this.EtcOption2.FirstOption !== 0)
-        this.ResultJsonData.EtcOptions.push(this.EtcOption2);
-      if (this.EtcOption3.FirstOption !== 0)
-        this.ResultJsonData.EtcOptions.push(this.EtcOption3);
-      if (this.EtcOption4.FirstOption !== 0)
-        this.ResultJsonData.EtcOptions.push(this.EtcOption4);
-      if (this.EtcOption5.FirstOption !== 0)
-        this.ResultJsonData.EtcOptions.push(this.EtcOption5);
+      if (this.EtcOption1.FirstOption !== 0) this.ResultJsonData.EtcOptions.push(this.EtcOption1);
+      if (this.EtcOption2.FirstOption !== 0) this.ResultJsonData.EtcOptions.push(this.EtcOption2);
+      if (this.EtcOption3.FirstOption !== 0) this.ResultJsonData.EtcOptions.push(this.EtcOption3);
+      if (this.EtcOption4.FirstOption !== 0) this.ResultJsonData.EtcOptions.push(this.EtcOption4);
+      if (this.EtcOption5.FirstOption !== 0) this.ResultJsonData.EtcOptions.push(this.EtcOption5);
 
       const SearchOptions = JSON.parse(sessionStorage.getItem('searchOptions'));
       if (SearchOptions !== null) {
@@ -1122,10 +1013,7 @@ export default {
         this.ResultJsonData.SortCondition = SearchOptions.SortCondition;
       }
 
-      sessionStorage.setItem(
-        'searchOptions',
-        JSON.stringify(this.ResultJsonData),
-      );
+      sessionStorage.setItem('searchOptions', JSON.stringify(this.ResultJsonData));
 
       if (this.ResultJsonData.CategoryCode === 200040) {
         const tempResultJsonData = Object.assign({}, this.ResultJsonData);
@@ -1147,7 +1035,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 select {
   width: 200px;
   padding: 0.8em 0.5em;
