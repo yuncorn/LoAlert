@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="app">
     <search-info ref="search_info"></search-info>
     <button id="search" @click="fetchAuctionsItems(true)">일반검색</button>
     <button @click="fetchAuctionsItemsAlertStart()">알림시작</button>
@@ -21,7 +21,6 @@ export default {
     SearchInfo,
     SearchResult,
   },
-  data() {},
   methods: {
     async fetchAuctionsItems(isInit) {
       await this.$store.dispatch('FETCH_AUCTIONS_ITEMS', this.$refs.search_info.getApiJsonParams(isInit)).then(() => {
