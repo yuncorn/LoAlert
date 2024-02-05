@@ -933,10 +933,10 @@ export default {
           arrayObj = this.SecondOptions_Stat;
           break;
         case '3':
-          if ($('#CharacterClass option:selected').val() === '전체') {
-            arrayObj = this.SecondOptions_Engrave_Common.concat(this.SecondOptions_Engrave_Class);
+          if ($('#CharacterClass option:selected').val() === '') {
+            arrayObj = Object.assign([], this.SecondOptions_Engrave_Common.concat(this.SecondOptions_Engrave_Class));
           } else {
-            arrayObj = this.SecondOptions_Engrave_Common;
+            arrayObj = Object.assign([], this.SecondOptions_Engrave_Common);
           }
 
           arrayObj = arrayObj.sort(function (a, b) {
@@ -951,7 +951,7 @@ export default {
             }
           });
 
-          if ($('#CharacterClass option:selected').val() !== '전체') {
+          if ($('#CharacterClass option:selected').val() !== '') {
             Array.from(this.SecondOptions_Engrave_Class).forEach(i => {
               if ($('#CharacterClass option:selected').val() === i.Class) {
                 arrayObj.unshift(i);

@@ -209,6 +209,7 @@ export default {
           setTimeout(function () {
             message.close();
           }, 10000);
+          console.log('매물에 변동이 있습니다. [' + new Date() + ']');
         }
         sessionStorage.setItem('searchAlertItemsLength', searchAlertItemsLength);
       }
@@ -269,15 +270,15 @@ export default {
       clearInterval(this.Timer);
     },
     getRemainTime(time) {
-      const xmasDay = new Date(time);
+      const exprDay = new Date(time);
       const currDay = new Date();
 
-      let diff = xmasDay - currDay;
+      let diff = exprDay - currDay;
 
       if (diff <= 0) {
         return '판매시간 종료';
       }
-      const diffDays = Math.floor((xmasDay.getTime() - currDay.getTime()) / (1000 * 60 * 60 * 24));
+      const diffDays = Math.floor((exprDay.getTime() - currDay.getTime()) / (1000 * 60 * 60 * 24));
       diff -= diffDays * (1000 * 60 * 60 * 24);
       const diffHours = Math.floor(diff / (1000 * 60 * 60));
       diff -= diffHours * (1000 * 60 * 60);
