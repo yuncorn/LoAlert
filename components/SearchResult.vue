@@ -209,6 +209,13 @@ export default {
           setTimeout(function () {
             message.close();
           }, 10000);
+
+          if (parseInt(sessionStorage.getItem('searchAlertItemsLength')) < searchAlertItemsLength) { 
+            document.body.style.backgroundColor = "red";
+          } else {
+            document.body.style.backgroundColor = "white";
+          }
+        
           console.log('매물에 변동이 있습니다. [' + new Date() + ']');
         }
         sessionStorage.setItem('searchAlertItemsLength', searchAlertItemsLength);
