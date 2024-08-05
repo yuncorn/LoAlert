@@ -45,13 +45,13 @@
             <p>{{ item.Name }}</p>
             <p>[구매 시 거래 {{ item.AuctionInfo.TradeAllowCount }}회 가능]</p>
           </td>
-          <td style="width: 100px">
+          <td style="width: 140px">
             <p v-for="(option, idx) in item.Options.filter(o => o.Type === 'STAT')" :key="idx">
               {{ option.OptionName }} +{{ option.Value }}
             </p>
             <!-- 아크패시브 상중하 용 -->
             <p v-for="(option, idx) in item.Options.filter(o => o.Type === 'ACCESSORY_UPGRADE')" :key="idx">
-              <span>{{ getAccOptionGrade(option) }}</span>
+              <span>{{ getAccOptionGrade(option, idx + 1) }}</span>
             </p>
           </td>
           <td style="width: 180px">
@@ -335,61 +335,81 @@ export default {
         return 'gray';
       }
     },
-    getAccOptionGrade(option) {
+    getAccOptionGrade(option, idx) {
+      let returnStr = '[ ' + idx + ' ] ';
       switch (option.OptionName) {
         case '적에게 주는 피해 증가':
           if (option.Value === 2) {
-            return '(★) 적주피';
+            returnStr += '(★) 적주피';
+            break;
           } else if (option.Value === 1.2) {
-            return '(중) 적주피';
+            returnStr +=  '(중) 적주피';
+            break;
           } else {
-            return '(하) 적주피';
+            returnStr +=  '(하) 적주피';
+            break;
           }
         case '추가 피해':
           if (option.Value === 2.6) {
-            return '(★) 추피';
+            returnStr +=  '(★) 추피';
+            break;
           } else if (option.Value === 1.6) {
-            return '(중) 추피';
+            returnStr +=  '(중) 추피';
+            break;
           } else {
-            return '(하) 추피';
+            returnStr +=  '(하) 추피';
+            break;
           }
         case '공격력 ':
           if (option.Value === 1.55) {
-            return '(★) 공';
+            returnStr +=  '(★) 공';
+            break;
           } else if (option.Value === 0.95) {
-            return '(중) 공';
+            returnStr +=  '(중) 공';
+            break;
           } else if (option.Value < 10) {
-            return '(하) 공';
+            returnStr +=  '(하) 공';
+            break;
           } else {
             break;
           }
         case '무기 공격력 ':
           if (option.Value === 3) {
-            return '(★) 무공';
+            returnStr +=  '(★) 무공';
+            break;
           } else if (option.Value === 1.8) {
-            return '(중) 무공';
+            returnStr +=  '(중) 무공';
+            break;
           } else if (option.Value < 10) {
-            return '(하) 무공';
+            returnStr +=  '(하) 무공';
+            break;
           } else {
             break;
           }
         case '치명타 적중률':
           if (option.Value === 1.55) {
-            return '(★) 치적';
+            returnStr +=  '(★) 치적';
+            break;
           } else if (option.Value === 0.95) {
-            return '(중) 치적';
+            returnStr +=  '(중) 치적';
+            break;
           } else {
-            return '(하) 치적';
+            returnStr +=  '(하) 치적';
+            break;
           }
         case '치명타 피해':
           if (option.Value === 4) {
-            return '(★) 치피';
+            returnStr +=  '(★) 치피';
+            break;
           } else if (option.Value === 2.4) {
-            return '(중) 치피';
+            returnStr +=  '(중) 치피';
+            break;
           } else {
-            return '(하) 치피';
+            returnStr +=  '(하) 치피';
+            break;
           }
       }
+      return returnStr;
     },
   },
 };
