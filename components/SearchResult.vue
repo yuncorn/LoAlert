@@ -49,6 +49,10 @@
             <p v-for="(option, idx) in item.Options.filter(o => o.Type === 'STAT')" :key="idx">
               {{ option.OptionName }} +{{ option.Value }}
             </p>
+            <!-- 아크패시브 상중하 용 -->
+            <p v-for="(option, idx) in item.Options.filter(o => o.Type === 'ACCESSORY_UPGRADE')" :key="idx">
+              <span>{{ getAccOptionGrade(option) }}</span>
+            </p>
           </td>
           <td style="width: 180px">
             <p v-for="(option, idx) in item.Options.filter(o => o.Type !== 'STAT')" :key="idx">
@@ -202,6 +206,11 @@ export default {
         }, 10000); // 10초 임시
       } else {
         if (parseInt(sessionStorage.getItem('searchAlertItemsLength')) !== searchAlertItemsLength) {
+          if (parseInt(sessionStorage.getItem('searchAlertItemsLength')) < searchAlertItemsLength) {
+            document.body.style.backgroundColor = 'red';
+          } else {
+            document.body.style.backgroundColor = 'white';
+          }
           const message = new Notification('알림', {
             body: '매물에 변동이 있습니다.',
           });
@@ -317,6 +326,62 @@ export default {
         return 'red';
       } else {
         return 'gray';
+      }
+    },
+    getAccOptionGrade(option) {
+      switch (option.OptionName) {
+        case '적에게 주는 피해 증가':
+          if (option.Value === 2) {
+            return '(★) 적주피';
+          } else if (option.Value === 1.2) {
+            return '(중) 적주피';
+          } else {
+            return '(하) 적주피';
+          }
+        case '추가 피해':
+          if (option.Value === 2.6) {
+            return '(★) 추피';
+          } else if (option.Value === 1.6) {
+            return '(중) 추피';
+          } else {
+            return '(하) 추피';
+          }
+        case '공격력 ':
+          if (option.Value === 1.55) {
+            return '(★) 공';
+          } else if (option.Value === 0.95) {
+            return '(중) 공';
+          } else if (option.Value < 10) {
+            return '(하) 공';
+          } else {
+            break;
+          }
+        case '무기 공격력 ':
+          if (option.Value === 3) {
+            return '(★) 무공';
+          } else if (option.Value === 1.8) {
+            return '(중) 무공';
+          } else if (option.Value < 10) {
+            return '(하) 무공';
+          } else {
+            break;
+          }
+        case '치명타 적중률':
+          if (option.Value === 1.55) {
+            return '(★) 치적';
+          } else if (option.Value === 0.95) {
+            return '(중) 치적';
+          } else {
+            return '(하) 치적';
+          }
+        case '치명타 피해':
+          if (option.Value === 4) {
+            return '(★) 치피';
+          } else if (option.Value === 2.4) {
+            return '(중) 치피';
+          } else {
+            return '(하) 치피';
+          }
       }
     },
   },

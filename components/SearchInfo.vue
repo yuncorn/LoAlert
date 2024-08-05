@@ -155,6 +155,8 @@ export default {
         { Value: 1, Text: '팔찌 기본 효과' },
         { Value: 5, Text: '팔찌 특수 효과' },
         { Value: 4, Text: '팔찌 옵션 수량' },
+        { Value: 7, Text: '연마 효과' },
+        { Value: 8, Text: '아크패시브' },
       ],
       SecondOptions_Stat: [
         {
@@ -825,6 +827,152 @@ export default {
           Class: '',
         },
       ],
+      SecondOptions_Grinding_Effect: [
+        {
+          Value: 42,
+          Text: '★적에게 주는 피해 증가',
+          Class: '',
+          Categorys: [200010],
+          Tiers: null,
+        },
+        {
+          Value: 41,
+          Text: '★추가 피해',
+          Class: '',
+          Categorys: [200010],
+          Tiers: null,
+        },
+        {
+          Value: 45,
+          Text: '★공격력 %',
+          Class: '',
+          Categorys: [200020],
+          Tiers: null,
+        },
+        {
+          Value: 46,
+          Text: '★무기 공격력 %',
+          Class: '',
+          Categorys: [200020],
+          Tiers: null,
+        },
+        {
+          Value: 49,
+          Text: '★치명타 적중률',
+          Class: '',
+          Categorys: [200030],
+          Tiers: null,
+        },
+        {
+          Value: 50,
+          Text: '★치명타 피해',
+          Class: '',
+          Categorys: [200030],
+          Tiers: null,
+        },
+        {
+          Value: 53,
+          Text: '공격력 +',
+          Class: '',
+          Categorys: null,
+          Tiers: null,
+        },
+        {
+          Value: 44,
+          Text: '낙인력',
+          Class: '',
+          Categorys: [200010],
+          Tiers: null,
+        },
+
+        {
+          Value: 54,
+          Text: '무기 공격력 +',
+          Class: '',
+          Categorys: null,
+          Tiers: null,
+        },
+        {
+          Value: 57,
+          Text: '상태이상 공격 지속시간',
+          Class: '',
+          Categorys: null,
+          Tiers: null,
+        },
+        {
+          Value: 43,
+          Text: '세레나데, 신성, 조화 게이지 획득량 증가',
+          Class: '',
+          Categorys: [200010],
+          Tiers: null,
+        },
+        {
+          Value: 51,
+          Text: '아군 공격력 강화 효과',
+          Class: '',
+          Categorys: [200030],
+          Tiers: null,
+        },
+        {
+          Value: 52,
+          Text: '아군 피해량 강화 효과',
+          Class: '',
+          Categorys: [200030],
+          Tiers: null,
+        },
+
+        {
+          Value: 58,
+          Text: '전투 중 생명력 회복량',
+          Class: '',
+          Categorys: null,
+          Tiers: null,
+        },
+        {
+          Value: 56,
+          Text: '최대 마나',
+          Class: '',
+          Categorys: null,
+          Tiers: null,
+        },
+        {
+          Value: 55,
+          Text: '최대 생명력',
+          Class: '',
+          Categorys: null,
+          Tiers: null,
+        },
+        {
+          Value: 48,
+          Text: '파티원 보호막 효과',
+          Class: '',
+          Categorys: [200020],
+          Tiers: null,
+        },
+        {
+          Value: 47,
+          Text: '파티원 회복 효과',
+          Class: '',
+          Categorys: [200020],
+          Tiers: null,
+        },
+      ],
+      SecondOptions_Arc_Passive: [
+        {
+          Value: 1,
+          Text: '깨달음',
+          Class: '',
+          Categorys: [200010, 200020, 200030],
+          Tiers: [4],
+        },
+        {
+          Value: 2,
+          Text: '도약',
+          Class: '',
+          Categorys: [200040],
+          Tiers: [4],
+        },
+      ],
       Categories: [
         {
           Code: 200000,
@@ -848,7 +996,7 @@ export default {
         },
       ],
       ItemGrades: ['일반', '고급', '희귀', '영웅', '전설', '유물', '고대', '에스더'],
-      ItemTiers: [1, 2, 3],
+      ItemTiers: [1, 2, 3, 4],
       Classes: [
         '버서커',
         '디스트로이어',
@@ -879,9 +1027,9 @@ export default {
       ],
       ResultJsonData: {
         // default 노출값 세팅
-        ItemGradeQuality: '10',
-        ItemGrade: '유물',
-        ItemTier: '3',
+        ItemGradeQuality: '70',
+        ItemGrade: '고대',
+        ItemTier: '4',
         CharacterClass: '',
         CategoryCode: 200000,
         EtcOptions: [],
@@ -971,6 +1119,12 @@ export default {
           break;
         case '4':
           arrayObj = this.SecondOptions_Bracelet_Option;
+          break;
+        case '7':
+          arrayObj = this.SecondOptions_Grinding_Effect;
+          break;
+        case '8':
+          arrayObj = this.SecondOptions_Arc_Passive;
           break;
         default:
           return;
