@@ -20,6 +20,11 @@
         </p>
       </div>
     </div>
+    <p>공격력 : 40 95 155</p>
+    <p>무공 : 80 180 300</p>
+    <p>적주피 : 621000000 621000001 621000002</p>
+    <p>추피 : 70 160 260</p>
+    <img src="../assets/png/연마옵.png" alt="" />>
     <h2>검색결과</h2>
     <p>전체 개수 : {{ page.total === 10000 ? page.total + '+' : page.total }}</p>
     <div class="searchResult" style="overflow-x: auto">
@@ -219,12 +224,12 @@ export default {
             message.close();
           }, 10000);
 
-          if (parseInt(sessionStorage.getItem('searchAlertItemsLength')) < searchAlertItemsLength) { 
-            document.body.style.backgroundColor = "red";
+          if (parseInt(sessionStorage.getItem('searchAlertItemsLength')) < searchAlertItemsLength) {
+            document.body.style.backgroundColor = 'red';
           } else {
-            document.body.style.backgroundColor = "white";
+            document.body.style.backgroundColor = 'white';
           }
-        
+
           console.log('매물에 변동이 있습니다. [' + new Date() + ']');
         }
         sessionStorage.setItem('searchAlertItemsLength', searchAlertItemsLength);
@@ -343,69 +348,69 @@ export default {
             returnStr += '(★) 적주피';
             break;
           } else if (option.Value === 1.2) {
-            returnStr +=  '(중) 적주피';
+            returnStr += '(중) 적주피';
             break;
           } else {
-            returnStr +=  '(하) 적주피';
+            returnStr += '(하) 적주피';
             break;
           }
         case '추가 피해':
           if (option.Value === 2.6) {
-            returnStr +=  '(★) 추피';
+            returnStr += '(★) 추피';
             break;
           } else if (option.Value === 1.6) {
-            returnStr +=  '(중) 추피';
+            returnStr += '(중) 추피';
             break;
           } else {
-            returnStr +=  '(하) 추피';
+            returnStr += '(하) 추피';
             break;
           }
-        case '공격력 ':
+        case '공격력':
           if (option.Value === 1.55) {
-            returnStr +=  '(★) 공';
+            returnStr += '(★) 공';
             break;
           } else if (option.Value === 0.95) {
-            returnStr +=  '(중) 공';
+            returnStr += '(중) 공';
             break;
           } else if (option.Value < 10) {
-            returnStr +=  '(하) 공';
+            returnStr += '(하) 공';
             break;
           } else {
             break;
           }
-        case '무기 공격력 ':
+        case '무기 공격력':
           if (option.Value === 3) {
-            returnStr +=  '(★) 무공';
+            returnStr += '(★) 무공';
             break;
           } else if (option.Value === 1.8) {
-            returnStr +=  '(중) 무공';
+            returnStr += '(중) 무공';
             break;
           } else if (option.Value < 10) {
-            returnStr +=  '(하) 무공';
+            returnStr += '(하) 무공';
             break;
           } else {
             break;
           }
         case '치명타 적중률':
           if (option.Value === 1.55) {
-            returnStr +=  '(★) 치적';
+            returnStr += '(★) 치적';
             break;
           } else if (option.Value === 0.95) {
-            returnStr +=  '(중) 치적';
+            returnStr += '(중) 치적';
             break;
           } else {
-            returnStr +=  '(하) 치적';
+            returnStr += '(하) 치적';
             break;
           }
         case '치명타 피해':
           if (option.Value === 4) {
-            returnStr +=  '(★) 치피';
+            returnStr += '(★) 치피';
             break;
           } else if (option.Value === 2.4) {
-            returnStr +=  '(중) 치피';
+            returnStr += '(중) 치피';
             break;
           } else {
-            returnStr +=  '(하) 치피';
+            returnStr += '(하) 치피';
             break;
           }
       }
