@@ -1028,10 +1028,10 @@ export default {
       ResultJsonData: {
         // default 노출값 세팅
         ItemGradeQuality: '70',
-        ItemGrade: '고대',
+        ItemGrade: '유물',
         ItemTier: '4',
         CharacterClass: '',
-        CategoryCode: 200000,
+        CategoryCode: 200040,
         EtcOptions: [],
         Sort: 'BUY_PRICE',
         PageNo: 1,

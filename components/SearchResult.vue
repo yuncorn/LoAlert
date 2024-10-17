@@ -18,13 +18,26 @@
           <input v-model="Option_BuyPrice.MinValue" type="text" placeholder="최소 수치" />
           <input v-model="Option_BuyPrice.MaxValue" type="text" placeholder="최대 수치" />
         </p>
+        <p>
+          <span>(팔찌)옵션개수 : </span>
+          <select id="optionCount">
+            <option></option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option selected>4</option>
+          </select>
+        </p>
       </div>
     </div>
-    <p>공격력 : 40 95 155</p>
-    <p>무공 : 80 180 300</p>
-    <p>적주피 : 621000000 621000001 621000002</p>
-    <p>추피 : 70 160 260</p>
-    <img src="../assets/png/연마옵.png" alt="" />>
+    <button @click="showAccOpt ? (showAccOpt = false) : (showAccOpt = true)">악세옵션보기</button>
+    <div v-if="showAccOpt">
+      <p>공격력 : 40 95 155</p>
+      <p>무공 : 80 180 300</p>
+      <p>적주피 : 621000000 621000001 621000002</p>
+      <p>추피 : 70 160 260</p>
+      <img src="../assets/png/연마옵.png" alt="" />
+    </div>
     <h2>검색결과</h2>
     <p>전체 개수 : {{ page.total === 10000 ? page.total + '+' : page.total }}</p>
     <div class="searchResult" style="overflow-x: auto">
@@ -94,6 +107,7 @@
 </template>
 
 <script>
+import $ from 'jquery';
 import paging from '@/components/Paging.vue';
 
 export default {
@@ -126,6 +140,7 @@ export default {
         MaxValue: '',
       },
       Timer: '',
+      showAccOpt: false,
     };
   },
   mounted() {
@@ -206,9 +221,9 @@ export default {
         window.alert('알림시작');
 
         this.Timer = setInterval(() => {
-          console.log('반복검색중');
+          console.log('반복검색중 [' + new Date() + ']');
           this.$emit('search_alert_items');
-        }, 10000); // 10초 임시
+        }, 5000); // 10초 임시
       } else {
         if (parseInt(sessionStorage.getItem('searchAlertItemsLength')) !== searchAlertItemsLength) {
           if (parseInt(sessionStorage.getItem('searchAlertItemsLength')) < searchAlertItemsLength) {
@@ -245,6 +260,7 @@ export default {
           let isPassQuality = true;
           let isPassBidPrice = true;
           let isPassBuyPrice = true;
+          let isPassOptionCount = true;
 
           if (this.Option_Quality.MinValue !== '') {
             if (i.GradeQuality < this.Option_Quality.MinValue) {
@@ -280,15 +296,22 @@ export default {
             }
           }
 
-          if (isPassQuality && isPassBidPrice && isPassBuyPrice) {
+          if ($('#optionCount').val() !== '') {
+            if (i.Options.length.toString() !== $('#optionCount').val()) {
+              isPassOptionCount = false;
+            }
+          }
+
+          if (isPassQuality && isPassBidPrice && isPassBuyPrice && isPassOptionCount) {
             this.SearchAlert.Items.push(i);
           }
         });
       }
     },
     stopSearchAlert() {
-      window.alert('알림종료');
+      // window.alert('알림종료');
       clearInterval(this.Timer);
+      document.body.style.backgroundColor = 'white';
     },
     getRemainTime(time) {
       const exprDay = new Date(time);
